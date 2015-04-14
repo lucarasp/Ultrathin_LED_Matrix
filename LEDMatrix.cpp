@@ -92,7 +92,7 @@ void LEDMatrix::drawImage(uint16_t xoffset, uint16_t yoffset, uint16_t width, ui
     for (uint16_t y = 0; y < height; y++) {
         for (uint16_t x = 0; x < width; x++) {
             const uint8_t *byte = image + (x + y * width) / 8;
-            uint8_t  bit = 7 - x % 8;
+            uint8_t  bit = 7 - (x + y * width) % 8;
             uint8_t  pixel = (*byte >> bit) & 1;
 
             drawPoint(x + xoffset, y + yoffset, pixel);
